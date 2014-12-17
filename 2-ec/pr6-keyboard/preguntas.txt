@@ -1,0 +1,20 @@
+3.1 - 
+	Devuelve:
+	AB
+	AA
+	AA
+	FA
+	AA
+
+3.4.1 -
+	a: 1E y 9E
+        k: 25 y A5
+        Alt: 38 y B8
+        Enter: 1C y 9C
+
+3.4.2 -
+	Se reenvía el comando Make
+
+3.4.3 -
+	Aparecen 0x28 y 0x18
+

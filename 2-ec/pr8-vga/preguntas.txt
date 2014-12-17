@@ -1,0 +1,6 @@
+3.2.1- 320, el ancho y tamaño de una línea.
+3.2.2- 320*200*1, es decir, 64000 bytes.
+
+3.3.1- 12 (11 si suponemos que al empezar está en 0 y no hace falta cambiar de página)
+3.3.2- 16 veces (1024 / 64 colores)
+3.3.3- 4 repeticiones (1024 / 256 colores)

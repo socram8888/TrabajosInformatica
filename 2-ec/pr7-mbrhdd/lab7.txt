@@ -1,0 +1,42 @@
+3.1.1 Da 83886080 (0x00050000)
+3.1.2 También da 83886080 sectores
+3.2.1 Salen dos particiones, la primera es de arranque.
+	Partición 0: 80 20 21 00 83 01 85 BC 00 08 00 00 00 90 AB 00
+	Partición 1: 00 01 86 BC 05 2E E2 8C 00 98 AB 00 00 08 33 00 
+
+3.2.2 0x83 (sistema de Linux) y 0x05 (partición extendida)
+3.2.3
+	Partición 0: inicio 0x00000800 longitud 0x00AB9000
+	Partición 1: inicio 0x00AB9800 longitud 0x00330800
+3.2.4
+	1      2048s      11245567s  11243520s  primary   ext4                 arranque
+ 	2      11245568s  14589951s  3344384s   extended
+ 	5      11247616s  14589951s  3342336s   logical   linux-swap(v1)
+
+3.2.5
+	Me sale todo ceros, no está formateado
+
+3.2.6
+	Disco /dev/sda: 42.9 GB, 42949672960 bytes
+	255 cabezas, 63 sectores/pista, 5221 cilindros
+	Unidades = cilindros de 16065 * 512 = 8225280 bytes
+	Tamaño de sector (lógico / físico): 512 bytes / 512 bytes
+	Tamaño E/S (mínimo/óptimo): 512 bytes / 512 bytes
+	Identificador de disco: 0x00000000
+
+	El disco /dev/sda no contiene una tabla de particiones válida
+
+	Disco /dev/sdb: 42.9 GB, 42949672960 bytes
+	255 cabezas, 63 sectores/pista, 5221 cilindros
+	Unidades = cilindros de 16065 * 512 = 8225280 bytes
+	Tamaño de sector (lógico / físico): 512 bytes / 512 bytes
+	Tamaño E/S (mínimo/óptimo): 512 bytes / 512 bytes
+	Identificador de disco: 0x000678ee
+
+	Disposit. Inicio    Comienzo      Fin      Bloques  Id  Sistema
+	/dev/sdb1   *           1         701     5621760   83  Linux
+	La partición 1 no termina en un límite de cilindro.
+	/dev/sdb2             701         909     1672192    5  Extendida
+	La partición 2 no termina en un límite de cilindro.
+	/dev/sdb5             701         909     1671168   82  Linux swap / Solaris
+
