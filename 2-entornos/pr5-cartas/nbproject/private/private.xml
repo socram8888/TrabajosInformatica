@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/gui/BankPanel.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/swing/JImage.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/gui/NewGameWindow.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/gui/PlayerPanel.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/gui/RugPanel.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/Main.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/ctrl/NewGameController.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/dat/Game.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/swing/JRotableLabel.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/gui/DeckTexture.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/gui/StatsPanel.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/dat/Card.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/gui/MainWindowBar.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/gui/LoadTextureDialog.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/ctrl/MainController.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/gui/CardsPanel.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/gui/CardComponent.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/gui/MainWindow.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/dat/Player.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/dat/Shuffler.java</file>
+            <file>file:/E:/Clase/EU/Cartas/src/ti/saxeith/sym/dat/StackFactory.java</file>
+        </group>
+    </open-files>
+</project-private>
