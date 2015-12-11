@@ -1,0 +1,7 @@
+El algoritmo consiste, dado un AFD con sus propiedades y su función de transición, definir un AFD nuevo con las siguientes propiedades:
+ - F'(q, x) = F(q, x)
+ - q'[] = q[]
+ - qinicial'[] = F(qinicial[], 'a')
+ - qfinal'[] = qfinal[]
+
+Es decir, redefinir los iniciales como los destinos de las transiciones que se producen al introducir una a.

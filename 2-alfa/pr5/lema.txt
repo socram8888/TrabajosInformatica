@@ -1,0 +1,13 @@
+Partida 1:
+ - Empieza CPU
+ - m=12
+ - w=aaaaaabbbbbb
+ - i=4
+ - Gana jugador
+
+Partida 2:
+ - Empieza jugador
+ - m=18
+ - CPU escoge w=aaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbb
+ - |x|=15, |y|=2, |z|=19
+ - CPU escoge xy^2z=a^20b^18. Gana CPU.

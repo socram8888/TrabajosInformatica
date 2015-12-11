@@ -1,0 +1,108 @@
+{
+	0
+	{
+		3
+		{
+			ti.sazeith.is2.pr1.Owner
+			2
+			0
+			Marcos Vives
+			videlsol@alumni.uv.es
+			{
+				2
+				{
+					ti.sazeith.is2.pr1.Item
+					5
+					0
+					$1
+					Objeto de prueba
+					false
+					{
+						0
+					}
+				}
+				{
+					ti.sazeith.is2.pr1.Item
+					5
+					1
+					$1
+					Coche teledirigido
+					true
+					02/04/2008
+					23/05/2017
+					5.0
+					{
+						0
+					}
+				}
+			}
+		}
+		{
+			ti.sazeith.is2.pr1.Owner
+			2
+			1
+			Pedro De Los Palotes
+			palope@gmail.com
+			{
+				1
+				{
+					ti.sazeith.is2.pr1.Item
+					5
+					2
+					$1
+					Audi A3
+					false
+					{
+						1
+						{
+							ti.sazeith.is2.pr1.Loan
+							2
+							$2
+							10/03/1995
+							15/03/1995
+							150.0
+						}
+					}
+				}
+			}
+		}
+		{
+			ti.sazeith.is2.pr1.Owner
+			2
+			2
+			pepe p
+			pepe@ppep.es
+			{
+				2
+				{
+					ti.sazeith.is2.pr1.Item
+					5
+					3
+					$1
+					tabla 1
+					true
+					01/01/2010
+					01/07/2010
+					10.0
+					{
+						0
+					}
+				}
+				{
+					ti.sazeith.is2.pr1.Item
+					5
+					4
+					$1
+					tabla 2
+					true
+					01/01/2010
+					31/00/2011
+					5.0
+					{
+						0
+					}
+				}
+			}
+		}
+	}
+}

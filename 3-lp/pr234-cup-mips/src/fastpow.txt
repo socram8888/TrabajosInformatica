@@ -1,0 +1,15 @@
+leer base;
+leer exp;
+
+valor <- 1;
+temp <- base;
+
+while (exp > 0) {
+    if (exp % 2 == 1) {
+        valor <- valor * temp;
+    };
+    temp <- temp * temp;
+    exp <- exp / 2;
+};
+
+mostrar valor;

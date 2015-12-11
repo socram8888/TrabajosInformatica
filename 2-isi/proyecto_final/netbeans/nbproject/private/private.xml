@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/Main.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/model/Universidad.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/gui/IniciarSesion.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/ctrl/Usuario.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/model/Laboratorio.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/gui/MatricularSubgrupo.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/model/Profesor.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/gui/TaskCierreMatricula.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/gui/SubgrupoAsignatura.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/model/UsuarioRegistrado.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/model/GestorUniversidad.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/gui/InformacionSubgrupo.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/model/Administrador.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/model/Asignatura.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/gui/SeleccionarSubgrupo.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/model/Teoria.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/gui/VistaAlumno.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/gui/SeleccionarAsignatura.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/gui/ListadoAsignaturas.java</file>
+            <file>file:/E:/Clase/isi/netbeans/src/universidad/model/Alumno.java</file>
+        </group>
+    </open-files>
+</project-private>

@@ -1,0 +1,310 @@
+import java_cup.runtime.*;
+import java.io.*;
+import java.util.*;
+
+action code {:
+    private final Set<String> variables = new HashSet<String>();
+    private int basereg = 1;
+    private int iflbl = 0;
+    private int whilelbl = 0;
+
+    public int getBaseReg(int adjust) {
+        basereg += adjust;
+        return basereg;
+    }
+
+    public int getIfLabel() {
+        return ++iflbl;
+    }
+
+    public int getWhileLabel() {
+        return ++whilelbl;
+    }
+
+    public String getVariable(String name) {
+        name = "v_" + name.toLowerCase();
+        if (!variables.contains(name)) {
+            throw new RuntimeException("Undefined variable " + name);
+        }
+        return name;
+    }
+
+    public String defineVariable(String name) {
+        name = "v_" + name.toLowerCase();
+        variables.add(name);
+        return name;
+    }
+:};
+
+parser code {:
+    public static void main(String[] arg){
+        if (arg.length != 1) {
+            System.err.println("No source file specified");
+            return;
+        }
+
+        String fileName = arg[0];
+        LexicalAnalyzerMIPS analyzer = null;
+        parser parserObj = null;
+        Symbol x = null;
+
+        try {
+            analyzer = new LexicalAnalyzerMIPS(new InputStreamReader(new FileInputStream(fileName)));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        try {
+            parserObj = new parser(analyzer);
+            x = parserObj.parse();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(x.value);
+    }
+:};
+
+terminal Integer INT;
+terminal String VAR;
+terminal EQUALS, LESSER_EQUALS, GREATER_EQUALS, LESSER, GREATER;
+terminal ADD, SUB;
+terminal MUL, DIV, MOD;
+terminal PAROPEN, PARCLOSE;
+
+terminal LEER, ASSIGN, MOSTRAR, IF, WHILE, TERM;
+terminal BROPEN, BRCLOSE;
+
+non terminal String program;
+non terminal String linelist;
+non terminal String sentence;
+non terminal String exp;
+
+precedence left EQUALS, LESSER_EQUALS, GREATER_EQUALS, LESSER, GREATER;
+precedence left ADD, SUB;
+precedence left MUL, DIV, MOD;
+
+/* Gramática */
+program ::= linelist:lines
+        {:
+            StringBuilder sbl = new StringBuilder(
+                "   .globl main\n" +
+                "   .text\n" +
+                "main:\n"
+            );
+
+            sbl.append(lines);
+
+            sbl.append(
+                "   jr $ra\n" +
+                "   nop\n" +
+                ".data\n"
+            );
+
+            for (String var : variables) {
+                sbl.append(var).append(": .space 4\n");
+            }
+
+            RESULT = sbl.toString();
+        :};
+
+linelist ::= sentence:sentence TERM linelist:lines
+        {:
+            RESULT = sentence + lines;
+        :} |
+
+        sentence:sentence TERM
+        {:
+            RESULT = sentence;
+        :};
+
+sentence ::=
+    LEER VAR:var
+        {:
+            RESULT = String.format(
+                "   ori $v0, $0, 5\n" +
+                "   syscall\n" +
+                "   sw $v0, %s\n",
+                defineVariable(var)
+            );
+        :} |
+
+    MOSTRAR VAR:var
+        {:
+            RESULT = String.format(
+                "   lw $a0, %s\n" +
+                "   ori $v0, $0, 1\n" +
+                "   syscall\n",
+                getVariable(var)
+            );
+        :} |
+
+    IF exp:exp {: getBaseReg(-1); :} sentence:sentence
+        {:
+            int lbl = getIfLabel();
+            RESULT = String.format(
+                "%s" +
+                "   beq $2, $0, if_%d\n" +
+                "%s" +
+                "if_%d:\n",
+                exp, lbl, sentence, lbl
+            );
+        :} |
+
+    WHILE exp:exp {: getBaseReg(-1); :} sentence:sentence
+        {:
+            int lbl = getWhileLabel();
+            RESULT = String.format(
+                "whst_%d:\n" +
+                "%s" +
+                "   beq $2, $0, whend_%d\n" +
+                "%s" +
+                "   b whst_%d\n" +
+                "whend_%d:\n",
+                lbl, exp, lbl, sentence, lbl, lbl
+            );
+        :} |
+
+    VAR:var ASSIGN exp:exp
+        {:
+            getBaseReg(-1);
+            RESULT = String.format(
+                "%s" +
+                "   sw $2, %s\n",
+                exp, defineVariable(var)
+            );
+        :} |
+
+    BROPEN linelist:lines BRCLOSE
+        {:
+            RESULT = lines;
+        :};
+
+exp ::=
+    PAROPEN exp:exp PARCLOSE
+        {:
+            RESULT = exp;
+        :} |
+
+    exp:a ADD exp:b
+        {:
+            int basereg = getBaseReg(-1);
+            RESULT = String.format(
+                "%s" +
+                "%s" +
+                "   add $%d, $%d, $%d\n",
+                a, b, basereg, basereg, basereg + 1
+            );
+        :} |
+
+    exp:a SUB exp:b
+        {:
+            int basereg = getBaseReg(-1);
+            RESULT = String.format(
+                "%s" +
+                "%s" +
+                "   sub $%d, $%d, $%d\n",
+                a, b, basereg, basereg, basereg + 1
+            );
+        :} |
+
+    exp:a MUL exp:b
+        {:
+            int basereg = getBaseReg(-1);
+            RESULT = String.format(
+                "%s" +
+                "%s" +
+                "   mult $%d, $%d\n" +
+                "   mflo $%d\n",
+                a, b, basereg, basereg + 1, basereg
+            );
+        :} |
+
+    exp:a DIV exp:b
+        {:
+            int basereg = getBaseReg(-1);
+            RESULT = String.format(
+                "%s" +
+                "%s" +
+                "   div $%d, $%d\n" +
+                "   mflo $%d\n",
+                a, b, basereg, basereg + 1, basereg
+            );
+        :} |
+
+    exp:a MOD exp:b
+        {:
+            int basereg = getBaseReg(-1);
+            RESULT = String.format(
+                "%s" +
+                "%s" +
+                "   div $%d, $%d\n" +
+                "   mfhi $%d\n",
+                a, b, basereg, basereg + 1, basereg
+            );
+        :} |
+
+    exp:a LESSER exp:b
+        {:
+            int basereg = getBaseReg(-1);
+            RESULT = String.format(
+                "%s" +
+                "%s" +
+                "   slt $%d, $%d, $%d\n",
+                a, b, basereg, basereg, basereg + 1
+            );
+        :} |
+
+    exp:a EQUALS exp:b
+        {:
+            int basereg = getBaseReg(-1);
+            RESULT = String.format(
+                "%s" +
+                "%s" +
+                "   xor $%d, $%d, $%d\n" +
+                "   sltiu $%d, $%d, 1\n",
+                a, b, basereg, basereg, basereg + 1, basereg, basereg
+            );
+        :} |
+
+    exp:a GREATER exp:b
+        {:
+            int basereg = getBaseReg(-1);
+            RESULT = String.format(
+                "%s" +
+                "%s" +
+                "   slt $%d, $%d, $%d\n",
+                a, b, basereg, basereg + 1, basereg
+            );
+        :} |
+
+    VAR:var
+        {:
+            int basereg = getBaseReg(+1);
+            RESULT = String.format(
+                "   lw $%d, %s\n",
+                basereg, getVariable(var)
+            );
+        :} |
+
+    INT:x
+        {:
+            int basereg = getBaseReg(+1);
+
+            int high = (x >> 16) & 0xFFFF;
+            int low = x & 0xFFFF;
+
+            if (high != 0) {
+                RESULT = String.format(
+                    "   lui $at, %d\n",
+                    "   ori $%d, $at, %d\n",
+                    high, basereg, low
+                );
+            } else {
+                RESULT = String.format(
+                    "   ori $%d, $0, %d\n",
+                    basereg, low
+                );
+            }
+        :};

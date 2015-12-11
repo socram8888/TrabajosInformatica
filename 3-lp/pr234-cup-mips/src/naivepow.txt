@@ -1,0 +1,9 @@
+leer base;
+leer exp;
+
+valor <- 1;
+while (exp > 0) {
+    valor <- valor * base;
+    exp <- exp - 1;
+};
+mostrar valor;

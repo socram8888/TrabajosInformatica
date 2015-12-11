@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build">
+	<path id="build.classpath">
+		<pathelement location="classes"/>
+	</path>
+	<target name="init">
+		<mkdir dir="classes"/>
+	</target>
+	<target name="clean">
+		<delete dir="classes"/>
+	</target>
+	<target depends="init" name="build">
+		<javac srcdir="." destdir="classes" source="1.5" target="1.5" fork="yes">
+			<classpath refid="build.classpath"/>
+			<include name="universidad/Laboratorio.java"/>
+			<include name="universidad/Teoria.java"/>
+			<include name="universidad/Alumno.java"/>
+			<include name="universidad/Profesor.java"/>
+			<include name="universidad/Administrador.java"/>
+			<include name="universidad/Usuario.java"/>
+			<include name="universidad/UsuarioRegistrado.java"/>
+			<include name="universidad/Universidad.java"/>
+			<include name="universidad/Titulacion.java"/>
+			<include name="universidad/Asignatura.java"/>
+			<include name="universidad/Subgrupo.java"/>
+			<include name="universidad/FranjaHoraria.java"/>
+			<include name="universidad/XStream.java"/>
+		</javac>
+	</target>
+</project>

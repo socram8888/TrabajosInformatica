@@ -1,0 +1,26 @@
+Supongamos una cadena correctamente balanceada de llaves, tal que:
+	w = '{'^n · '}'^n
+
+El lema del bombeo nos dice que |uv| <= n, con lo que uv estará formado por todos los '{' del principio, ya que hemos definido la cadena así. Por tanto:
+	u = '{'^(n - t)
+	v = '{'^t
+	1 <= t <= n
+
+t debe ser mayor de uno, por la primera condición del lema del bombeo en que especifica que |v| es mayor de 1, y puede llegar hasta n, en caso de que |u|=0 (es decir, u sea nulo).
+
+z son los caracteres restantes de w, es decir:
+	z = '}'^n
+
+Por la definición del lema del bombeo:
+	w = u · v^i · z
+
+Reemplazando por las u, v y z calculadas:
+	w = u^(n - t) · (v^t)^i · z
+	w = '{'^(n - t) · '{'^(t*i) · '}'^n
+	w = '{'^(n - t + t * i) · '}'^n
+	w = '{'^(n + t * (i - 1)) · '}'^n
+
+Si igualamos con la original:
+	'{'^(n + t * (i - 1)) · '}'^n == '{'^n · '}'^n
+
+Vemos que sólo esta igualdad sólo se cumple en caso de i=1, cuando sin embargo para que se cumpla el lema del bombeo cualquier i debería ser válida. Por lo tanto, el lenguaje no es regular.

@@ -1,0 +1,5 @@
+El algoritmo consiste en, teniendo un autómata finito determinista que valide el lenguaje determinado, minimizar dicho autómata al máximo, y comprobar si el autómata resultante cumple las siguientes propiedades:
+	- Tenga un único estado
+	- Este único estado sea final
+	- El estado tenga transiciones a sí mismo para cualquier símbolo del alfabeto
+Si esto se cumple, entonces dicho lenguaje contiene todas las cadenas posibles del alfabeto.
