@@ -1,0 +1,146 @@
+
+@font-face {
+    font-family: 'Kristen ITC';
+    src: url('kristenitc.ttf');
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: #f9c667; /* Old browsers */
+	height: 100%;
+}
+
+body {
+	font-family: Calibri, sans-serif;
+	margin: 0 10%;
+	border: 1em solid transparent;
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+img {
+	max-width: 100%;
+}
+
+#logo {
+	height: 10em;
+	background-image: url('logo_bg_2.jpg');
+	background-position: 50% 60%;
+	background-size: cover;
+	display: flex;
+	align-items: flex-end;
+	border: 1px solid black;
+}
+
+#logo h1 {
+	color: white;
+	font-family: Kristen ITC;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	font-size: 2em;
+	margin: 0.5em;
+}
+
+#content {
+	flex-grow: 1;
+        background-color: #ffd9b1;
+        padding: 1em;
+}
+
+#pagechooser ul {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+#pagechooser li {
+	flex-grow: 1;
+	display: inline-block;
+}
+
+#pagechooser a {
+	display: inline-block;
+	width: 100%;
+	padding: 0.5em 1em;
+	
+	color: white;
+	border: 1px solid black;
+	text-align: center;
+	text-decoration: none;
+
+	/* https://css-tricks.com/adding-stroke-to-web-text/ */
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+	/* http://colorzilla.com/gradient-editor/#ffb76b+0,ffa73d+50,ff7c00+51,ff7f04+100;Orange+Gloss */
+	background: #ffb76b;
+	background: linear-gradient(to bottom, #ffb76b 0%,#ffa73d 50%,#ff7c00 51%,#ff7f04 100%);
+}
+
+#pagechooser a:hover, #pagechooser a.selected {
+	background: #ffd9b1;
+	background: linear-gradient(to bottom, #ffd9b1 0%,#ffd199 50%,#ffba79 51%,#ffbb7b 100%);
+}
+
+#content {
+	border: 1px solid black;
+	flex-grow: 1;
+}
+
+#content > :first-child {
+    margin-top: 0 !important;
+}
+
+#content > :last-child {
+    margin-bottom: 0 !important;
+}
+
+#products {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#products > * {
+    position: relative;
+
+    display: flex;
+    flex: 1;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+
+    border: solid black 1px;
+    height: 15em;
+    margin: 0.5em;
+    padding: 0.25em;
+
+    background-size: contain;
+    background-color: white;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+
+#products .pricing {
+    font-size: 2em;
+    color: #ff7c00;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+#products a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+table, td, th {
+    border: solid black 1px;
+}
