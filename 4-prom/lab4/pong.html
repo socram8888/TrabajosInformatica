@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Ping-pong</title>
+		<link rel="stylesheet" href="index.css">
+		<style>
+		body {
+			display: flex;
+			flex-direction: row;
+		}
+		
+		#divFormulario{
+			border: 1px solid red;
+			width: 18em;
+			max-width: 100%;
+			margin: 0.5em;
+		}
+		
+		#divCanvas{
+			border: 1px solid black;
+			margin: 0.5em;
+		}
+		
+		h3{
+			text-align: center;
+		}
+		
+		h5{
+			margin: 0.5em;
+		}
+		
+		input{
+			margin: 0.5em;
+		}
+		
+		.bordeCajas{
+			border: 1px solid red;
+			border-radius: 5px;
+			margin: 0.5em;
+			padding: 1em;
+		}
+		</style>
+	</head>
+	<body>
+		<!-- DIV FORMULARIO -->
+		<div id="divFormulario">
+			<div class="bordeCajas">
+				<h3>Nombre de los jugadores</h3>
+				<h5> Jugador 1 </h5>
+				<input type="text" name="jugador1" id="jugador1" value="Pedro">
+				<h5> Jugador 2 </h5>
+				<input type="text" name="jugador2" id="jugador2" value="Pablo">
+			</div>
+
+			<div class="bordeCajas">
+				<h3>Dificultad</h3>
+				<h5> Tama&ntilde;o pala </h5>
+				<input type="number" name="tamPala" id="tamPala" min="20" value="50" max="200">
+				<h5> Velocidad (px/s)</h5>
+				<input type="number" name="velocidad" id="velocidad" value="100">
+				
+			</div>
+
+			<div class="bordeCajas">
+				<button id="start">Start</button>
+			</div>
+		</div>
+		
+		<!-- DIV CANVAS -->
+		<canvas id="divCanvas" width="640" height="480"></canvas>
+
+		<script>
+			'use strict';
+
+			Math.absmod = function(val, mod) {
+				val = val % mod;
+				if (val < 0) {
+					val += mod;
+				}
+				return val;
+			}
+
+			var lastFrameTime;
+			var ballX, ballY, ballSpeed, ballAngle;
+			var paddle1Pos, paddle2Pos, paddleSize;
+			var player1Points, player2Points;
+
+			var BALL_RADIUS = 10;
+			var PADDLE_WIDTH = 10;
+			var PADDLE_MARGIN = 30;
+			var PADDLE_INCREMENT = 10;
+			var BALL_WALL = BALL_RADIUS + PADDLE_WIDTH + PADDLE_MARGIN;
+			var NET_WIDTH = 5;
+
+			var canvas = document.getElementById("divCanvas");
+			var nameInput1 = document.getElementById("jugador1");
+			var nameInput2 = document.getElementById("jugador2");
+			var paddleSizeInput = document.getElementById("tamPala");
+			var ballSpeedInput = document.getElementById("velocidad");
+			var startButton = document.getElementById("start");
+
+			// Fix Firefox being too smart
+			canvas.disabled = false;
+			nameInput1.disabled = false;
+			nameInput2.disabled = false;
+			paddleSizeInput.disabled = false;
+			ballSpeedInput.disabled = false;
+			startButton.disabled = false;
+
+			function resetGame() {
+				ballX = canvas.width / 2;
+				ballY = canvas.height / 2;
+				ballSpeed = parseFloat(ballSpeedInput.value);
+
+				// Create random angle within 0 (pointing right) and 180 (pointing left)
+				ballAngle = Math.random() / 2;
+
+				// Move second quadrant to third quadrant
+				if (ballAngle > 0.25) {
+					ballAngle += 0.25;
+				}
+
+				// Rotate by -45
+				ballAngle = Math.absmod(ballAngle - 0.125, 1);
+
+				paddleSize = parseFloat(paddleSizeInput.value);
+				paddle1Pos = canvas.height / 2 - paddleSize / 2;
+				paddle2Pos = canvas.height / 2 - paddleSize / 2;
+			}
+
+			function nextFrame(time) {
+				var ctx = canvas.getContext("2d");
+
+				var frameBallSpeed = ballSpeed * (time - lastFrameTime) / 1000;
+				var hasCollided = true;
+				while (hasCollided && frameBallSpeed > 0) {
+					hasCollided = false;
+
+					// Collision with left paddle
+					if (ballAngle >= 0.25 && ballAngle < 0.75) {
+						var distToPaddle = (BALL_WALL - ballX) / Math.cos(2 * Math.PI * ballAngle);
+						if (ballX >= BALL_WALL && distToPaddle <= frameBallSpeed) {
+							var collY = (ballX - BALL_WALL) * Math.tan(ballAngle * 2 * Math.PI) + ballY;
+							console.log(collY);
+							if (collY >= paddle1Pos && collY <= paddle1Pos + paddleSize) {
+								hasCollided = true;
+								ballX = BALL_WALL;
+								ballY = collY;
+								ballAngle = Math.absmod(0.5 - ballAngle, 1);
+								frameBallSpeed -= distToPaddle;
+							}
+						}
+
+					// Collision with right paddle
+					} else {
+						var distToPaddle = (canvas.width - BALL_WALL - ballX) / Math.cos(2 * Math.PI * ballAngle);
+						if (ballX <= canvas.width - BALL_WALL && distToPaddle <= frameBallSpeed) {
+							var collY = (canvas.width - BALL_WALL - ballX) * Math.tan(ballAngle * 2 * Math.PI) + ballY;
+							console.log(collY);
+							if (collY >= paddle2Pos && collY <= paddle2Pos + paddleSize) {
+								hasCollided = true;
+								ballX = canvas.width - BALL_WALL;
+								ballY = collY;
+								ballAngle = Math.absmod(0.5 - ballAngle, 1);
+								frameBallSpeed -= distToPaddle;
+							}
+						}
+					}
+
+					// Collision with upper wall
+					if (ballAngle > 0.5) {
+						var distToWall = (BALL_RADIUS - ballY) / Math.sin(ballAngle * 2 * Math.PI);
+						if (distToWall < frameBallSpeed) {
+							hasCollided = true;
+							ballX = (ballY - BALL_RADIUS) / Math.tan(ballAngle * 2 * Math.PI) + ballX;
+							ballY = BALL_RADIUS;
+							ballAngle = Math.absmod(1 - ballAngle, 1);
+							frameBallSpeed -= distToWall;
+						}
+					} else {
+						var distToWall = (canvas.height - BALL_RADIUS - ballY) / Math.sin(ballAngle * 2 * Math.PI);
+						if (distToWall < frameBallSpeed) {
+							hasCollided = true;
+							ballX = (canvas.height - BALL_RADIUS - ballY) / Math.tan(ballAngle * 2 * Math.PI) + ballX;
+							ballY = canvas.height - BALL_RADIUS;
+							ballAngle = Math.absmod(1 - ballAngle, 1);
+							frameBallSpeed -= distToWall;
+						}
+					}
+				}
+
+				ballX += Math.cos(2 * Math.PI * ballAngle) * frameBallSpeed;
+				ballY += Math.sin(2 * Math.PI * ballAngle) * frameBallSpeed;
+
+				if (ballX < 0) {
+					player2Points++;
+					resetGame();
+				} else if (ballX > canvas.width) {
+					player1Points++;
+					resetGame();
+				}
+
+				// Clear canvas
+				ctx.fillStyle = "black";
+				ctx.beginPath();
+				ctx.rect(0, 0, canvas.width, canvas.height);
+				ctx.closePath();
+				ctx.fill();
+
+				ctx.fillStyle = "rgb(0, 255, 0)";
+/*
+				var c1 = (ballX - BALL_WALL) * Math.tan(ballAngle * 2 * Math.PI) + ballY;
+				ctx.beginPath();
+				ctx.fillStyle = "red";
+				ctx.arc(BALL_WALL, c1, 1, 0, Math.PI * 2);
+				ctx.closePath();
+				ctx.fill();
+				ctx.fillStyle = "black";
+*/
+				// Draw ball
+				ctx.beginPath();
+				ctx.arc(ballX, ballY, BALL_RADIUS, 0, 2 * Math.PI);
+				ctx.closePath();
+				ctx.fill();
+
+				// Draw paddle 1
+				ctx.beginPath();
+				ctx.rect(PADDLE_MARGIN, paddle1Pos, PADDLE_WIDTH, paddleSize);
+				ctx.closePath();
+				ctx.fill();
+
+				// Draw paddle 2
+				ctx.beginPath();
+				ctx.rect(canvas.width - PADDLE_MARGIN - PADDLE_WIDTH, paddle2Pos, PADDLE_WIDTH, paddleSize);
+				ctx.closePath();
+				ctx.fill();
+
+				// Draw net
+				for (var i = 0; i < 32; i++) {
+					ctx.beginPath();
+					ctx.rect(canvas.width / 2 - NET_WIDTH / 2, i * 16, NET_WIDTH, 10);
+					ctx.closePath();
+					ctx.fill();
+				}
+
+				// Draw names
+				ctx.textAlign = 'center';
+				ctx.font = "20px sans-serif";
+				ctx.fillText(nameInput1.value + ": " + player1Points, canvas.width / 4, 20);
+				ctx.fillText(nameInput2.value + ": " + player2Points, canvas.width * 3 / 4, 20);
+
+				window.requestAnimationFrame(nextFrame);
+				lastFrameTime = time;
+			}
+
+			document.body.addEventListener("keypress", function(e) {
+				if (!lastFrameTime) {
+					return;
+				}
+
+				console.log(e.keyCode || e.which);
+				switch (e.keyCode || e.which) {
+					case 113: // q
+					case 113 - 64:
+						paddle1Pos = Math.max(paddle1Pos - PADDLE_INCREMENT, 0);
+						break;
+
+					case 97: // a
+					case 97 - 64:
+						paddle1Pos = Math.min(paddle1Pos + PADDLE_INCREMENT, canvas.height - paddleSize);
+						break;
+
+					case 111: // o
+					case 111 - 64:
+						paddle2Pos = Math.max(paddle2Pos - PADDLE_INCREMENT, 0);
+						break;
+
+					case 108: // l
+					case 108 - 64:
+						paddle2Pos = Math.min(paddle2Pos + PADDLE_INCREMENT, canvas.height - paddleSize);
+						break;
+				}
+			});
+
+			startButton.addEventListener("click", function() {
+				nameInput1.disabled = true;
+				nameInput2.disabled = true;
+				paddleSizeInput.disabled = true;
+				ballSpeedInput.disabled = true;
+				startButton.disabled = true;
+
+				lastFrameTime = performance.now();
+				player1Points = player2Points = 0;
+				resetGame();
+
+				window.requestAnimationFrame(nextFrame);
+			});
+		</script>
+	</body>
+</html>

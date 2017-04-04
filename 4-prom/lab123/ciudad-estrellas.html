@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>Ciudad de las Estrellas</title>
+		<link rel="stylesheet" href="common.css">
+		<link rel="stylesheet" href="contenido.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div id="container">
+			<header>
+				<img src="logo.png" id="logo">
+			</header>
+			<nav>
+				<ul class="menubar">
+					<li class="dropdown"><a>Peliculas</a>
+						<ul>
+							<li><a href="ciudad-estrellas.html">La ciudad de las estrellas</a></li>
+							<li><a href="ballerina.html">Ballerina</a></li>
+						</ul>
+					</li>
+					<li><a href="audio.html">Audio</a></li>
+					<li><a href="geo.html">Geoposicionamiento</a></li>
+					<li><a href="contacto.html">Contacto</a></li>
+				</ul>
+			</nav>
+
+			<main>
+				<h2>La ciudad de las estrellas</h2>
+				<div class="peliArriba">
+					<img src="ciudad-estrellas.jpg" alt="Cartel Pelicula 2" class="cartel">
+				
+					<dl>
+						<dt>Fecha:</dt>
+						<dd>13/01/2017</dd>
+						<dt>Director:</dt>
+						<dd>Damien Chazelle</dd>
+					</dl>
+
+					<p>Mia (Emma Stone) es una de las muchas aspirantes a actriz que viven en Los Angeles en busca del sueño hollywoodiense, se gana la vida como camarera mientras se presenta a montones de pruebas de casting. Sebastian (Ryan Gosling) es un pianista que vive de las actuaciones de segunda que le salen, y su sueño es regentar su propio club donde rendir tributo al jazz más puro.</p>
+					<p>Los destinos de Mia y Sebastian se cruzarán y la pareja descubrirá el amor, un vínculo que hará florecer y luego poner en jaque las aspiraciones de ambos. En una competición constante por buscar un hueco en el mundo del espectáculo, la pareja descubrirá que el equilibrio entre el amor y el arte puede ser el mayor obstáculo de todos.</p> 
+					<p>Damien Chazelle (<i>Whiplash</i>) ha escrito y dirigido esta película musical, cuyos protagonistas son Emma Stone (<i>Irrational Man, Criadas y señoras, Rumores y mentiras</i>) y Ryan Gosling (<i>Dos buenos tipos, La gran apuesta, Cruce de caminos</i>). Completan el reparto los actores J.K. Simons (<i>El contable, Gravity Falls</i>), Jessica Rothe (<i>Mary + Jane, A por ellas</i>), Finn Wittrock (<i>American Horror Story, Noé</i>) y Sonoya Mizuno (<i>High Strung, Ex Machina</i>).</p>
+				
+				</div>
+
+				<div class="peliAbajo">
+					<video src="ciudad-estrellas.mp4"></video>
+
+					<div id="controls">
+						<button id="play">&#9654;&#65039;</button>
+						<button id="pause">&#9208;&#65039;</button>
+						<button id="stop">&#9209;&#65039;</button>
+						<button id="fastforward">&#9193;&#65039;</button>
+
+						<p>Volumen: <input id="volume" type="range" min="5" max="100" step="10" value="100"></input></p>
+						<p>Duración: <span id="duration">?</span> segundos</p>
+						<p>Posición: <span id="position">0</span> segundos</p>
+						<p><progress id="progress" value="0"></progress></p>
+					</div>
+				</div>
+			</main>
+		</div>
+		<script src="contenido.js"></script>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+body{ 
+    font-family:"Comic Sans MS"; 
+} 
+
+#principal { 
+    position:absolute;     
+    left:100px;     
+    top:55px;     
+    border-bottom:2px solid black;   
+    border-top:2px solid black; 
+    border-left:none;     
+    border-right:none;     
+} 
+
+b {
+	color: red;
+}
+
+ol li {
+	font-style: italic;
+}
+
+li b {
+	color: blue;
+}
+
+ul li {
+	font-style: normal;
+	font-weight: bold;
+}

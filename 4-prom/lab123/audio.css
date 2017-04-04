@@ -1,0 +1,26 @@
+.audioArriba{
+	overflow: auto;
+	padding: 0.8em;
+	text-align: center;
+}
+
+.audioArriba > *{
+	border: 3px solid orange;
+	padding: 0.3em;
+	margin: 0.8em;
+	background-color: white;
+}
+
+.audioAbajo{
+	text-align: center;
+}
+
+.audioAbajo > audio{
+	width: 50em;
+	max-width: 100%;
+	padding: 0.8em;
+}
+
+.textoCancion{
+	font-weight: bold;
+}

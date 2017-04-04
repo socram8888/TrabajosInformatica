@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Practica 5 X3DOM</title>
+		<style>
+		body {
+			display: flex;
+			flex-direction: row;
+		}
+		
+		#divFormulario{
+			border: 1px solid red;
+			width: 20em;
+			max-width: 100%;
+			margin: 0.5em;
+		}
+		
+		h3{
+			text-align: center;
+		}
+		
+		h5{
+			margin: 0.5em;
+		}
+		
+		input[type="text"]{
+			margin: 0.5em;
+			width: 2.0em;
+		}
+		
+		button{
+			margin: 0.5em;
+			text-align: center;
+		}
+		
+		.bordeCajas{
+			border: 1px solid red;
+			border-radius: 5px;
+			margin: 0.5em;
+			padding: 1em;
+		}
+		</style>
+		<link rel="stylesheet" href="https://x3dom.org/release/x3dom.css">
+		<script src="https://x3dom.org/release/x3dom.js"></script>
+	</head>
+	<body>
+		<!-- DIV FORMULARIO -->
+		<div id="divFormulario">
+			<div class="bordeCajas">
+				<h3>Insertar figura</h3>
+				
+				<input type="radio" name="figura" value="cubo" checked> Cubo:  <label>Lado</label><input type="text" name="lado" id="lado" value="1.0"><br>
+				<input type="radio" name="figura" value="esfera"> Esfera:  <label>Radio</label><input type="text" name="radioE" id="radioE" value="1.0"><br>
+				<input type="radio" name="figura" value="cono"> Cono:  <label>Radio</label><input type="text" name="radioC" id="radioC" value="1.0"><label>Alto</label><input type="text" name="alto" id="alto" value="1.0"><br>
+				<input type="radio" name="figura" value="toro"> Toro:  <label>R.int</label><input type="text" name="radioIntToro" id="radioIntToro" value="1.0"><label>R.ext</label><input type="text" name="radioExtToro" id="radioExtToro" value="2.0"><br>
+			
+				<label> Color </label><input type="color" id="colorInsertar"> <br>
+				
+				<label> Posicion X</label><input type="text" id="posXInsertar" value="0.0"><label> Y</label><input type="text" id="posYInsertar" value="0.0"><label> Z </label><input type="text" id="posZInsertar" value="0.0">
+				
+				<button id="insertar">Insertar</button>
+			</div>
+
+			<div class="bordeCajas">
+				<h3>Editar figura</h3>
+				
+				<label> Cambiar color </label><input type="color" id="colorEditar"> <br><br>
+				
+				<label>Trasladar</label><br>
+				<label> X </label><input type="text" id="posXTras" value="0.0"><label> Y</label><input type="text" id="posYTras" value="0.0"><label> Z </label><input type="text" id="posZTras" value="0.0"><br><br>
+				
+				<label>Escalar</label><br>
+				<label> X </label><input type="text" id="posXEsc" value="1.0"><label> Y</label><input type="text" id="posYEsc" value="1.0"><label> Z </label><input type="text" id="posZEsc" value="1.0"><br><br>
+				
+				<button id="aplicar">Aplicar</button>
+			</div>
+		</div>
+		
+		<!-- DIV X3D -->
+		<x3d width="900" height="400" style="border: 1px solid red">
+			<scene id="escena"></scene>
+		</x3d>
+		
+		<script>
+			var escena = document.getElementById("escena");
+			var cubeSide = document.getElementById("lado");
+			var sphereRadius = document.getElementById("radioE");
+			var coneRadius = document.getElementById("radioC");
+			var coneHeight = document.getElementById("alto");
+			var torusIntRadius = document.getElementById("radioIntToro");
+			var torusExtRadius = document.getElementById("radioExtToro");
+			var insertColor = document.getElementById("colorInsertar");
+			var insertX = document.getElementById("posXInsertar");
+			var insertY = document.getElementById("posYInsertar");
+			var insertZ = document.getElementById("posZInsertar");
+			
+			var editingFigure = null;
+			var editX = document.getElementById("posXTras");
+			var editY = document.getElementById("posYTras");
+			var editZ = document.getElementById("posZTras");
+			var editScaleX = document.getElementById("posXEsc");
+			var editScaleY = document.getElementById("posYEsc");
+			var editScaleZ = document.getElementById("posZEsc");
+			var editColor = document.getElementById("colorEditar");
+
+			function getRadioValue(name) {
+				var radioList = document.getElementsByName(name);
+				
+				for (var i = 0; i < radioList.length; i++) {
+					if (radioList[i].checked) {
+						return radioList[i].value;
+					}
+				}
+				
+				return null;
+			}
+
+			function onFigureSelect(fig) {
+				editingFigure = fig;
+			}
+
+			document.getElementById("insertar").onclick = function() {
+				var type = getRadioValue("figura");
+				var figureNode;
+
+				switch (type) {
+					case 'cubo':
+						figureNode = document.createElement("box");
+						figureNode.setAttribute("size", cubeSide.value + "," + cubeSide.value + "," + cubeSide.value);
+						break;
+
+					case 'esfera':
+						figureNode = document.createElement("sphere");
+						figureNode.setAttribute("radius", sphereRadius.value);
+						break;
+						
+					case 'cono':
+						figureNode = document.createElement("cone");
+						figureNode.setAttribute("bottomRadius", coneRadius.value);
+						figureNode.setAttribute("height", coneHeight.value);
+						break;
+
+					case 'toro':
+						figureNode = document.createElement("torus");
+						figureNode.setAttribute("innerRadius", torusIntRadius.value);
+						figureNode.setAttribute("outerRadius", torusExtRadius.value);
+						break;
+				}
+
+				var material = document.createElement("material");
+				material.setAttribute("diffuseColor", insertColor.value);
+				
+				var appearance = document.createElement("appearance");
+				appearance.appendChild(material);
+				
+				var shape = document.createElement("shape");
+				shape.appendChild(appearance);
+				shape.appendChild(figureNode);
+				shape.setAttribute("onclick", "onFigureSelect(this)");
+				editingFigure = shape;
+
+				var trans = document.createElement("transform");
+				trans.setAttribute("translation", insertX.value + " " + insertY.value + " " + insertZ.value);
+				trans.appendChild(shape);
+
+				escena.appendChild(trans);
+			}
+			
+			document.getElementById("aplicar").onclick = function() {
+				if (!editingFigure) {
+					return;
+				}
+				
+				editingFigure.parentNode.setAttribute("translation", editX.value + " " + editY.value + " " + editZ.value);
+				editingFigure.parentNode.setAttribute("scale", editScaleX.value + "," + editScaleY.value + "," + editScaleZ.value);
+				editingFigure.getElementsByTagName("material")[0].setAttribute("diffuseColor", editColor.value);
+			}
+		</script>
+	</body>
+</html>

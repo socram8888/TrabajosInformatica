@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Ejercicio 6</title>
+		<link rel="stylesheet" href="http://x3dom.org/release/x3dom.css">
+		<script src="http://x3dom.org/release/x3dom.js"></script>
+	</head>
+	<body>
+		<x3d width="400" height="300">
+			<scene>
+				<transform translation="-3 0 0">
+					<shape>
+						<appearance>
+							<material diffuseColor="red"></material>
+						</appearance>
+						<sphere></sphere>
+					</shape>
+				</transform>
+				<transform translation="0 3 0">
+					<shape>
+						<appearance>
+							<material diffuseColor="red"></material>
+						</appearance>
+						<torus></torus>
+					</shape>
+				</transform>
+				<transform translation="0 -2 0">
+					<shape>
+						<appearance>
+							<material diffuseColor="red"></material>
+						</appearance>
+						<cone></cone>
+					</shape>
+				</transform>
+				<transform translation="3 0 0">
+					<shape>
+						<appearance>
+							<material diffuseColor="red"></material>
+						</appearance>
+						<cylinder></cylinder>
+					</shape>
+				</transform>
+				<shape>
+					<appearance>
+						<movieTextureurl='"foo.mp4","foo.ogv"'></movieTexture>
+					</appearance>
+					<cube></cube>
+				</shape>
+			</scene>
+		</x3d>
+	</body>
+</html>

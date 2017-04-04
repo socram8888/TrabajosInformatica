@@ -1,0 +1,48 @@
+
+* {
+	box-sizing: border-box;
+}
+
+#red, #green, #blue {
+	position: absolute;
+	width: 10em;
+	height: 10em;
+	border-radius: 5em;
+	transition: background-color 3s, transform 3s;
+}
+
+#red:hover, #green:hover, #blue:hover {
+	z-index: 99;
+	transition: background-color 3s, transform 3s;
+	transform: scale(1.5);
+}
+
+#red {
+	top: 10em;
+	left: 6em;
+	border: red solid 5px;
+}
+
+#red:hover {
+	background-color: red;
+}
+
+#green {
+	top: 4em;
+	left: 8em;
+	border: green solid 5px;
+}
+
+#green:hover {
+	background-color: green;
+}
+
+#blue {
+	top: 2em;
+	left: 1em;
+	border: blue solid 5px;
+}
+
+#blue:hover {
+	background-color: blue;
+}

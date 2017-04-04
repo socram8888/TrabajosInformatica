@@ -1,0 +1,4 @@
+#layer1, #layer2, #layer3 {
+	position: absolute;
+	border: solid 5px black;
+}

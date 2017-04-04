@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>Ballerina</title>
+		<link rel="stylesheet" href="common.css">
+		<link rel="stylesheet" href="contenido.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div id="container">
+			<header>
+				<img src="logo.png" id="logo">
+			</header>
+			<nav>
+				<ul class="menubar">
+					<li class="dropdown"><a>Peliculas</a>
+						<ul>
+							<li><a href="ciudad-estrellas.html">La ciudad de las estrellas</a></li>
+							<li><a href="ballerina.html">Ballerina</a></li>
+						</ul>
+					</li>
+					<li><a href="audio.html">Audio</a></li>
+					<li><a href="geo.html">Geoposicionamiento</a></li>
+					<li><a href="contacto.html">Contacto</a></li>
+				</ul>
+			</nav>
+
+			<main>
+				<h2>Ballerina</h2>
+				<div class="peliArriba">
+					<img src="ballerina.jpg" alt="Cartel Pelicula 3" class="cartel">
+
+					<dl>
+						<dt>Fecha:</dt>
+						<dd>27 de enero de 2017</dd>
+						<dt>Directores:</dt>
+						<dd>Eric Summer, Eric Warin</dd>
+					</dl>
+
+					<p>Es el año 1879. Tras perder a sus padres, Felicia es una niña que vive en un orfanato en su Bretaña natal. Su pasión es la danza y sueña con convertirse en una bailarina profesional. Para conseguirlo, se escapa con la ayuda de su amigo Víctor y viaja nada menos que hasta París. Allí se hará pasar por otra persona para conseguir entrar como alumna de la Grand Opera House y así luchar por tener la vida que desea.</p>
+
+					<p>Eric Summer (la serie <i>Interventions</i>) y Éric Warin (animador de <i>Bienvenidos a Belleville</i>) dirigen esta película de animación que han escrito Carol Noble (la serie <i>Baby Jake</i>) y Laurent Zeitoun (<i>Llévame a la Luna</i>). En su versión original cuenta con las voces de Elle Fanning (<i>Trumbo: La lista negra de Hollywood</i>), Dane DeHaan (V<i>alerian y la ciudad de los mil planetas</i>) y Maddie Ziegler (<i>The Book of Henry</i>). Por su parte, la producción corre a cargo de Nicolas Duval, Yann Zenou y Laurent Zeitoun, de Quad Films (<i>Intocable</i>).</p>
+				</div>
+
+				<div class="peliAbajo">
+					<video src="ballerina.mp4"></video>
+
+					<div id="controls">
+						<button id="play">&#9654;&#65039;</button>
+						<button id="pause">&#9208;&#65039;</button>
+						<button id="stop">&#9209;&#65039;</button>
+						<button id="fastforward">&#9193;&#65039;</button>
+
+						<p>Volumen: <input id="volume" type="range" min="5" max="100" step="10" value="100"></input></p>
+						<p>Duración: <span id="duration">?</span> segundos</p>
+						<p>Posición: <span id="position">0</span> segundos</p>
+						<p><progress id="progress" value="0"></progress></p>
+					</div>
+				</div>
+			</main>
+		</div>
+
+		<script src="contenido.js"></script>
+	</body>
+</html>

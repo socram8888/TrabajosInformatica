@@ -1,0 +1,37 @@
+body {
+	background-color: #fefcda;
+	font-family: 'Comic Sans MS';
+}
+
+body > div {
+	margin: 4em;
+	background-color: white;
+}
+
+p:first-child {
+	color: red;
+}
+
+p:first-letter {
+	color: red;
+	font-size: 4ex;
+}
+
+table, td, th {
+	border: 1px solid black;
+}
+
+th {
+	padding: 1em;
+	font-weight: bold;
+	background-color: gray;
+	text-align: center;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: #ccc;
+}
+
+tbody tr:nth-child(even) {
+	background-color: gray;
+}

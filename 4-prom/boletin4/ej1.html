@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Boletín 4 ejercicio 1</title>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			form {
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+				background-color: #eee;
+				width: 25em;
+				padding: 1em 5em;
+				border: solid 2px #ccc;
+				border-radius: 20px;
+			}
+
+			form > * {
+				margin: 0.5em;
+			}
+
+			form > label, form > p {
+				font-weight: bold;
+			}
+
+			input {
+				background-color: #ddd;
+				padding: 1em 2em;
+				border-radius: 1em;
+			}
+		</style>
+	</head>
+	<body>
+		<form method="get" id="contactform">
+			<p>Formulario de contacto</p>
+
+			<label for="username">Usuario *</label>
+			<input type="text" id="username" name="username" placeholder="usuario" required>
+			<input type="password" id="password" name="password" placeholder="password">
+
+			<label for="usertype">Tipo de usuario:</label>
+			<select name="usertype" id="usertype">
+				<option value="registered">Registrado</option>
+				<option value="invitado">Invitado</option>
+			</select>
+		</form>
+	</body>
+</html>

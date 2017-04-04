@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>Contacto</title>
+		<link rel="stylesheet" href="common.css">
+		<link rel="stylesheet" href="contacto.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div id="container">
+			<header>
+				<img src="logo.png" id="logo">
+			</header>
+			<nav>
+				<ul class="menubar">
+					<li class="dropdown"><a>Peliculas</a>
+						<ul>
+							<li><a href="ciudad-estrellas.html">La ciudad de las estrellas</a></li>
+							<li><a href="ballerina.html">Ballerina</a></li>
+						</ul>
+					</li>
+					<li><a href="audio.html">Audio</a></li>
+					<li><a href="geo.html">Geoposicionamiento</a></li>
+					<li><a href="contacto.html">Contacto</a></li>
+				</ul>
+			</nav>
+
+			<main>
+				<h2>Contacto</h2>
+				<div class="formulario">
+					<label>Nombre</label>
+					<input type="text" id="nombre" placeholder="Nombre" required="required">
+				
+					<label>Apellidos</label>
+					<input type="text" id="apellidos" placeholder="Apellidos" required="required">
+				
+					<label>Direccion</label>
+					<input type="text" id="direccion" placeholder="Direccion">
+				
+					<label>Telefono</label>
+					<input type="tel" name="telefono" placeholder="666666666" pattern="[0-9][0-9]*" title="Debe tener 9 numeros"/>
+				
+					<label>Correo</label>
+					<input type="email" name="correo" placeholder="micorreo@algo.com" required="required"/>
+				
+					<label>Mensaje</label>
+					<textarea name="mensaje" cols="30" rows="5" placeholder="Escribe tu mensaje aqui." required="required"></textarea>
+				
+					<input type="submit" name="boton" value="Enviar"/>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>
