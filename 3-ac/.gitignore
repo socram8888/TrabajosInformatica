@@ -1,0 +1,15 @@
+/.stfolder
+/main
+/benchmark
+
+*.o
+*.exe
+*.stackdump
+
+*.png
+*.pgm
+*.ppm
+
+!/aurora.ppm
+!/fgv.ppm
+*.tsv
