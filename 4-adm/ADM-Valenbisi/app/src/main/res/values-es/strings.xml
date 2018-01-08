@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="stop_id">Número</string>
+    <string name="report_count">Reportes</string>
+    <string name="stop_info_title">Datos</string>
+    <string name="address">Dirección</string>
+    <string name="slots_total">Total</string>
+    <string name="slots_free">Libres</string>
+    <string name="slots_used">Disponibles</string>
+    <string name="coordinates">Coordenadas</string>
+    <string name="report_subject">Asunto</string>
+    <string name="description">Descripción</string>
+    <string name="status">Estado</string>
+    <string-array name="report_status_values">
+        <item>Abierto</item>
+        <item>Procesando</item>
+        <item>Cerrado</item>
+    </string-array>
+    <string name="type">Tipo</string>
+    <string-array name="report_type_values">
+        <item>Mecánico</item>
+        <item>Eléctrico</item>
+        <item>Pintura</item>
+        <item>Albañilería</item>
+    </string-array>
+</resources>

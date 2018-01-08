@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Valenbisi</string>
+    <string name="stop_id">Number</string>
+    <string name="report_count">Reports</string>
+    <string name="stop_info_title">Data</string>
+    <string name="address">Address</string>
+    <string name="slots_total">Total</string>
+    <string name="slots_free">Free</string>
+    <string name="slots_used">Available</string>
+    <string name="coordinates">Coordinates</string>
+    <string name="report_subject">Subject</string>
+    <string name="description">Description</string>
+    <string name="status">Status</string>
+    <string-array name="report_status_values">
+        <item>Open</item>
+        <item>Processing</item>
+        <item>Closed</item>
+    </string-array>
+    <string name="type">Type</string>
+    <string-array name="report_type_values">
+        <item>Mechanic</item>
+        <item>Electric</item>
+        <item>Painting</item>
+        <item>Building</item>
+    </string-array>
+</resources>

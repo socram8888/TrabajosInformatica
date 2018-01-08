@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:rowCount="2"
+    android:columnCount="2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/stop_entry_address"
+        android:layout_columnSpan="2"
+        android:text="[address]"
+        android:textColor="?android:attr/textColorPrimary" />
+
+    <TextView
+        android:id="@+id/stop_entry_id"
+        android:layout_columnWeight="1"
+        android:text="[id]"
+        android:textColor="?android:attr/textColorPrimary" />
+
+    <TextView
+        android:id="@+id/stop_entry_reports"
+        android:layout_columnWeight="1"
+        android:text="[reports]"
+        tools:textColor="?android:attr/textColorPrimary" />
+
+</GridLayout>
